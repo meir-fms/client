@@ -17,12 +17,11 @@ function App() {
   }, [SERVER_URL])
 
   const addMeasurement = () => {
-    const currentTime = new Date().toISOString();
     Axios.post(SERVER_URL + "/addMeasurement", {
-      sensor, weight, time: currentTime,
+      sensor, weight
     })
       .then((response) => {
-        alert("Measurement added ...");
+        alert("Measurement added successfully");
       })
       .catch((error) => {
         console.error(error);

@@ -6,9 +6,8 @@ function App() {
   const [measurementList, setMeasurementList] = useState([]);
   const [sensor, setSensor] = useState("");
   const [weight, setWeight] = useState(0);
-  const [time,   setTime]   = useState(null);
 
-  const isLocal = false; // Set this to true to use localhost, false to use DNS
+  const isLocal = true; // Set this to true to use localhost, false to use DNS
   const SERVER_URL = isLocal ? "http://localhost:3001" : "https://fms-wgqj.onrender.com";
 
   useEffect(() => {
@@ -18,12 +17,33 @@ function App() {
   }, [SERVER_URL])
 
   const addMeasurement = () => {
+    const currentTime = new Date().toISOString();
     Axios.post(SERVER_URL + "/addMeasurement", {
-      sensor, weight, time,
-    }).then((response)=>{
-      alert ("Measurement added ...");
-    });
-  }
+      sensor, weight, time: currentTime,
+    })
+      .then((response) => {
+        alert("Measurement added ...");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Failed to add measurement");
+      });
+  };
+
+  const deleteAllMeasurements = () => {
+    const confirmed = window.confirm("Are you sure you want to delete all measurements?");
+    if (confirmed) {
+      Axios.delete(SERVER_URL + "/deleteAllMeasurements")
+        .then((response) => {
+          setMeasurementList([]);
+          alert("All measurements deleted successfully.");
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Failed to delete all measurements.");
+        });
+    }
+  };
 
   return (
     <div className="App">
@@ -38,13 +58,10 @@ function App() {
           placeholder="weight (grams) ..."
           onChange={(event) => {setWeight(event.target.value);}}
         />
-        <input 
-          type="datetime-local" 
-          step="1"
-          placeholder="date ..."
-          onChange={(event) => {setTime(event.target.value);}}
-        />
         <button onClick={addMeasurement}> Add Measurement </button>
+        <button onClick={deleteAllMeasurements}>
+          Delete All Measurements
+        </button>
       </div>
 
       <div ClassName = "displayMeasurementList">

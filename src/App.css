@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  background-color: #f2f2f2 !important;
 }
 
 .addMeasurementForm {
@@ -15,6 +16,7 @@
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   padding: 1rem;
+  background-color: white !important;
 }
 
 .addMeasurementForm input {
@@ -24,6 +26,7 @@
   border-radius: 0.25rem;
   font-size: 1rem;
   outline: none;
+  background-color: #f2f2f2 !important;
 }
 
 .addMeasurementForm button {
@@ -31,8 +34,8 @@
   margin: 0.5rem;
   border: none;
   border-radius: 0.25rem;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #4CAF50 !important;
+  color: white !important;
   font-size: 1rem;
   cursor: pointer;
   outline: none;
@@ -50,7 +53,7 @@
   align-items: center;
   margin: 0.5rem;
   padding: 1rem;
-  background-color: #f2f2f2;
+  background-color: white !important;
   border: 1px solid #ccc;
   border-radius: 0.25rem;
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
@@ -60,6 +63,7 @@
 .displayMeasurementList h1 {
   margin: 0.5rem;
   font-size: 1rem;
+  color: #4CAF50 !important;
 }
 
 .displayMeasurementList p {
